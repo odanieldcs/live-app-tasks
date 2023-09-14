@@ -1,2 +1,5 @@
 /api/node_modules
 /stack/data
+
+.DS_Store
+.env
