@@ -24,10 +24,8 @@ app.use(express.json());
 app.use(cors());
 
 // defini as rotas
+app.get("/", (req, res) => res.sendStatus(200));
 app.post("/task", taskController.create.bind(taskController));
 app.put("/task/:id/complete", taskController.complete.bind(taskController));
 
-// inicia o servidor
-app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
-});
+export default app;
