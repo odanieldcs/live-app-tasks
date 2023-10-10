@@ -4,7 +4,9 @@ export default class Category {
 	name?: string;
 	updatedAt?: Date;
 
-	constructor(readonly id: string, name: string, readonly createdAt: Date) {}
+	constructor(readonly id: string, name: string, readonly createdAt: Date) {
+		this.name = name;
+	}
 
 	static create(name: string) {
 		const taskId = IDGenerator.generate();

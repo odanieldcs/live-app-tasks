@@ -1,13 +1,14 @@
 import TaskRepository from '../../repository/TaskRepository';
 
-export class CompleteTask {
+export class AssignCategoryTask {
 	constructor(readonly taskRepository: TaskRepository) {}
 
-	async execute(taskId: string) {
-		// get task de um repository/direto do banco de dados.
+	async execute(taskId: string, categoryId: string) {
 		const task = await this.taskRepository.getOne(taskId);
-		task.complete();
-		this.taskRepository.complete(task);
+
+		task.assignCategory(categoryId);
+
+		this.taskRepository.update(task);
 
 		return task;
 	}

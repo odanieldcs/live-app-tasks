@@ -2,6 +2,7 @@ import IDGenerator from './IDGenerator';
 
 export default class Task {
 	done?: boolean = false;
+	categoryId?: string;
 	updatedAt?: Date;
 
 	constructor(
@@ -19,6 +20,11 @@ export default class Task {
 
 	complete() {
 		this.done = true;
+		this.updatedAt = new Date();
+	}
+
+	assignCategory(categoryId: string) {
+		this.categoryId = categoryId;
 		this.updatedAt = new Date();
 	}
 }

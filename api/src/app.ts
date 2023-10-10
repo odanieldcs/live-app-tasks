@@ -6,7 +6,11 @@ import cors from 'cors';
 import KnexConnection from './application/infra/database/knex/KnexConnection';
 import TaskController from './application/controller/TaskController';
 import CategoryController from './application/controller/CategoryController';
-import { CreateTask, CompleteTask } from './application/useCase/Task';
+import {
+	AssignCategoryTask,
+	CreateTask,
+	CompleteTask,
+} from './application/useCase/Task';
 import {
 	CreateCategory,
 	UpdateCategory,
@@ -22,6 +26,7 @@ const taskRepository = new TaskRepository(dbConnection);
 const categoryRepository = new CategoryRepository(dbConnection);
 const createTask = new CreateTask(taskRepository);
 const completeTask = new CompleteTask(taskRepository);
+const assignCategoryTask = new AssignCategoryTask(taskRepository);
 
 const categoryCreate = new CreateCategory(categoryRepository);
 const updateCreate = new UpdateCategory(categoryRepository);
@@ -32,7 +37,11 @@ const categoryController = new CategoryController(
 	listCreate,
 	updateCreate
 );
-const taskController = new TaskController(createTask, completeTask);
+const taskController = new TaskController(
+	createTask,
+	completeTask,
+	assignCategoryTask
+);
 
 // cria uma instancia do express
 const app = express();
@@ -45,6 +54,7 @@ app.use(cors());
 app.get('/', (req, res) => res.sendStatus(200));
 app.post('/task', taskController.create.bind(taskController));
 app.put('/task/:id/complete', taskController.complete.bind(taskController));
+app.put('/task/:id/assign', taskController.assignCategory.bind(taskController));
 
 app.get('/category', categoryController.list.bind(categoryController));
 app.post('/category', categoryController.create.bind(categoryController));
