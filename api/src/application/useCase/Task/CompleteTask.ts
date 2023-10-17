@@ -1,4 +1,4 @@
-import TaskRepository from '../../repository/TaskRepository';
+import { TaskRepository } from '../../repository';
 
 export class CompleteTask {
 	constructor(readonly taskRepository: TaskRepository) {}

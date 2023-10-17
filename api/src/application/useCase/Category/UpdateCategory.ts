@@ -1,4 +1,4 @@
-import CategoryRepository from '../../repository/CategoryRepository';
+import { CategoryRepository } from '../../repository';
 
 export class UpdateCategory {
 	constructor(private readonly categoryRepository: CategoryRepository) {}

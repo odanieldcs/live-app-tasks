@@ -1,5 +1,5 @@
 import Task from '../../../domain/entity/Task';
-import TaskRepository from '../../repository/TaskRepository';
+import { TaskRepository } from '../../repository';
 
 export class CreateTask {
 	constructor(private readonly taskRepository: TaskRepository) {}

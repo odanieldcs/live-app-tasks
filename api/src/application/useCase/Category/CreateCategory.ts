@@ -1,4 +1,4 @@
-import CategoryRepository from '../../repository/CategoryRepository';
+import { CategoryRepository } from '../../repository';
 import Category from '../../../domain/entity/Category';
 
 export class CreateCategory {

@@ -1,6 +1,6 @@
 import Task from '../../domain/entity/Task';
 
-export default class TaskRepository {
+export class TaskRepository {
 	constructor(readonly dbConnection: any) {}
 
 	async create(task: Task): Promise<void> {

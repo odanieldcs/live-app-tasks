@@ -3,45 +3,28 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-import KnexConnection from './application/infra/database/knex/KnexConnection';
-import TaskController from './application/controller/TaskController';
-import CategoryController from './application/controller/CategoryController';
+import KnexConnection from './infra/database/knex/KnexConnection';
 import {
-	AssignCategoryTask,
-	CreateTask,
-	CompleteTask,
-} from './application/useCase/Task';
-import {
-	CreateCategory,
-	UpdateCategory,
-	ListCategory,
-} from './application/useCase/Category';
-import TaskRepository from './application/repository/TaskRepository';
-import CategoryRepository from './application/repository/CategoryRepository';
+	RepositoryFactory,
+	UseCaseFactory,
+	ControllerFactory,
+} from './application/factory';
+import Router from './infra/http/Routes';
 
 const knexConnection = new KnexConnection();
 const dbConnection = knexConnection.getInstance();
 
-const taskRepository = new TaskRepository(dbConnection);
-const categoryRepository = new CategoryRepository(dbConnection);
-const createTask = new CreateTask(taskRepository);
-const completeTask = new CompleteTask(taskRepository);
-const assignCategoryTask = new AssignCategoryTask(taskRepository);
+// declarar uma instancia da minha RepositoryFactory
+const repositoryFactory = new RepositoryFactory(dbConnection);
 
-const categoryCreate = new CreateCategory(categoryRepository);
-const updateCreate = new UpdateCategory(categoryRepository);
-const listCreate = new ListCategory(categoryRepository);
+// declarar uma instancia da minha UseCaseFactory
+const useCaseFactory = new UseCaseFactory(repositoryFactory.repositories());
 
-const categoryController = new CategoryController(
-	categoryCreate,
-	listCreate,
-	updateCreate
-);
-const taskController = new TaskController(
-	createTask,
-	completeTask,
-	assignCategoryTask
-);
+// declar uma instancia da minha ControllerFactory
+const controllerFactory = new ControllerFactory(useCaseFactory);
+
+// defini as rotas enviando a instancia da minha ControllerFactory
+const router = new Router(controllerFactory);
 
 // cria uma instancia do express
 const app = express();
@@ -49,15 +32,6 @@ const app = express();
 // defini alguns middlewares
 app.use(express.json());
 app.use(cors());
-
-// defini as rotas
-app.get('/', (req, res) => res.sendStatus(200));
-app.post('/task', taskController.create.bind(taskController));
-app.put('/task/:id/complete', taskController.complete.bind(taskController));
-app.put('/task/:id/assign', taskController.assignCategory.bind(taskController));
-
-app.get('/category', categoryController.list.bind(categoryController));
-app.post('/category', categoryController.create.bind(categoryController));
-app.put('/category', categoryController.update.bind(categoryController));
+app.use(router.routes());
 
 export default app;
