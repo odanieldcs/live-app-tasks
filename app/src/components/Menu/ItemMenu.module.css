@@ -1,0 +1,3 @@
+.itemMenu {
+	@apply flex justify-between items-center rounded-xl px-[15px] py-[18px] hover:bg-[#E5EAF3] cursor-pointer;
+}
