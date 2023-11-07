@@ -1,0 +1,7 @@
+.item {
+	@apply flex justify-between w-full bg-white border-b border-[#D5D9E1] p-[15px] hover:bg-[#F5F6F8];
+}
+
+.props {
+	@apply flex;
+}

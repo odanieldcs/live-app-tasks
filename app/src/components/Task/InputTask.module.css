@@ -1,0 +1,4 @@
+.input {
+	@apply w-full border-2 px-[15px] py-[18px] text-base leading-5 text-[#23243D] rounded-[10px];
+	@apply border-[#D3DBE9] bg-[#F2F3F5] focus:border-[#4691E8] placeholder-[#94A1B7];
+}
