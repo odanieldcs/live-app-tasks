@@ -1,21 +1,24 @@
+import { Icon, IconName } from '../Icon';
 import Styles from './ItemMenu.module.css';
 
 export function ItemMenu({
 	icon,
 	counter,
 	children,
+	active,
 }: {
-	icon?: string;
+	icon?: IconName;
 	counter: string;
 	children: React.ReactNode;
+	active?: boolean;
 }) {
 	return (
-		<div className={Styles.itemMenu}>
+		<div className={`${Styles.itemMenu} ${active ? Styles.active : ''}`}>
 			<div className="flex">
-				<span className="w-6 h-6 bg-slate-600 rounded-md mr-4"></span>
+				{icon && <Icon icon={icon} />}
 				{children}
 			</div>
-			<div className="text-gray-500">{counter}</div>
+			<span>{counter}</span>
 		</div>
 	);
 }

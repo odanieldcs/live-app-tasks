@@ -1,0 +1,11 @@
+h1.title {
+	@apply text-[#23243D] font-medium text-[20px];
+}
+
+h2.title {
+	@apply text-[#767798] font-bold text-[16px] uppercase;
+}
+
+h3.title {
+	@apply text-[#94A1B7] font-bold text-[12px];
+}

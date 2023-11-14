@@ -1,17 +1,20 @@
 import Image from 'next/image';
+import Icons from './Base64Icons.json';
 
-const icons = {
-	done: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBzdHJva2U9IiNFRkY0RkMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=',
+const IconSource = {
+	Archive: Icons.Archive,
+	Done: Icons.Done,
+	List: Icons.List,
+	Menu: Icons.Menu,
+	NextWeek: Icons.NextWeek,
+	Today: Icons.Today,
+	Tomorrow: Icons.Tomorrow,
 };
 
-export function Icon({ name }: { name: string }) {
-	return (
-		<Image
-			src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBzdHJva2U9IiNFRkY0RkMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4="
-			width={24}
-			height={24}
-			fill
-			alt=""
-		/>
-	);
+export type IconName = keyof typeof IconSource;
+
+export function Icon({ icon }: { icon: IconName }) {
+	const iconBase64 = `data:image/svg+xml;base64,${IconSource[icon]}`;
+
+	return <Image src={iconBase64} width={24} height={24} alt="" />;
 }

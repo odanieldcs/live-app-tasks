@@ -1,14 +1,24 @@
-import { useState } from 'react';
-import Styles from './InputTask.module.css';
+import { useState, useId } from 'react';
+import { useMyAppContext } from '@/contexts/TaskAppContext';
+import Styles from './TaskInput.module.css';
 
-export function InputTask() {
+export function TaskInput() {
+	const { addTask } = useMyAppContext();
 	const [task, setTask] = useState('');
+
+	const newId = useId();
 
 	// call fn context to add task to list when user press enter
 	const handleAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
-			console.log('Input Enter: ', task);
-			// TODO: call fn context to add task to list
+			addTask({
+				id: newId,
+				title: task,
+				category: 'category',
+				dateToDo: new Date(),
+				isDone: false,
+			});
+
 			setTask('');
 		}
 	};

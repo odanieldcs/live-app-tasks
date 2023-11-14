@@ -1,8 +1,12 @@
+import { Icon } from '@/components/Icon';
 import { MainMenu } from '@/components/Menu/MainMenu';
 import { SecondaryMenu } from '@/components/Menu/SecondaryMenu';
 import { Sidebar } from '@/components/Sidebar/Sidebar';
-import { InputTask } from '@/components/Task/InputTask';
-import { ListItem } from '@/components/Task/ListItem';
+import { TaskInput } from '@/components/Task/TaskInput';
+import { Task } from '@/components/Task/Task';
+import { Title } from '@/components/Title/Title';
+import { User } from '@/components/User/User';
+import { TaskList } from '@/components/Task/TaskList';
 
 export default function Main() {
 	return (
@@ -19,29 +23,19 @@ export default function Main() {
 							<MainMenu />
 							<SecondaryMenu />
 						</div>
-						<div className="flex items-center">
-							<span className="w-16 h-16 bg-neutral-50 border-4 border-emerald-400 rounded-full mr-4"></span>
-							<p className="text-[#56577E] font-bold text-cl">Bia Silva</p>
-						</div>
+						<User />
 					</div>
 				</Sidebar>
 
-				<div className="p-7 w-full">
-					<h2 className="mb-8">Hoje</h2>
-					<InputTask />
+				<div className="p-7 flex flex-col w-full gap-y-[30px]">
+					<div className="flex gap-x-[10px]">
+						<Icon icon="List" />
+						<Title heading="Title">Hoje</Title>
+					</div>
+					<TaskInput />
 					<div className="flex flex-col w-full">
-						<h3>Para fazer</h3>
-						<ul className="flex w-full">
-							<li className="w-full">
-								<ListItem
-									category="Categoria"
-									dateToDo="13 Set. 23"
-									isDone={false}
-								>
-									Publicar o novo layout nos grupos do Whats para alunos
-								</ListItem>
-							</li>
-						</ul>
+						<Title heading="SmallTitle">Para fazer</Title>
+						<TaskList />
 					</div>
 				</div>
 			</div>

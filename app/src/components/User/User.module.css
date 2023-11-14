@@ -1,0 +1,11 @@
+.user {
+	@apply flex items-center;
+}
+
+.user span {
+	@apply w-16 h-16 bg-neutral-50 border-4 border-emerald-400 rounded-full mr-4;
+}
+
+.user p {
+	@apply text-[#56577E] font-bold;
+}

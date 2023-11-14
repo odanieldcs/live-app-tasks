@@ -1,3 +1,15 @@
 .itemMenu {
 	@apply flex justify-between items-center rounded-xl px-[15px] py-[18px] hover:bg-[#E5EAF3] cursor-pointer;
 }
+
+.itemMenu.active {
+	@apply bg-[#D3DBE9] hover:bg-[#E5EAF3];
+}
+
+.itemMenu div {
+	@apply flex items-center gap-x-[10px];
+}
+
+.itemMenu span {
+	@apply text-[#94A1B7]
+}

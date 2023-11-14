@@ -1,0 +1,13 @@
+.task {
+	@apply flex justify-between w-full border-b p-[15px] items-center;
+	@apply hover:bg-[#F5F6F8] bg-white border-[#D5D9E1];
+}
+
+.task p {
+	@apply text-[#23243D] text-[16px];
+
+}
+
+.props {
+	@apply flex items-center gap-x-[15px] text-[#94A1B7] text-[12px] font-semibold;
+}

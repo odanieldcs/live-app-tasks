@@ -1,4 +1,5 @@
 .checkbox {
+	@apply flex items-center justify-center;
 	@apply border-2 border-[#94A1B7] h-[30px] w-[30px] rounded-xl cursor-pointer;
 }
 
