@@ -8,7 +8,7 @@ export class CategoryRepository {
 	constructor(readonly dbConnection: any) {}
 
 	async create(category: Category): Promise<void> {
-		await this.dbConnection('category').inser({
+		await this.dbConnection('category').insert({
 			id: category.id,
 			name: category.name,
 			created_at: category.createdAt,
@@ -27,7 +27,7 @@ export class CategoryRepository {
 	}
 
 	async list(): Promise<Category[]> {
-		const list = this.dbConnection('category').select('*');
+		const list = await this.dbConnection('category').select('*');
 
 		const listFormatted = list.map((category: any) => {
 			return new Category(category.id, category.name, category.createdAt);

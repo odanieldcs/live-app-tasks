@@ -32,7 +32,8 @@ export class CategoryController {
 	}
 
 	async update(req: Request, res: Response) {
-		const { id, name } = req.body;
+		const { id } = req.params;
+		const { name } = req.body;
 
 		const category = await this.useCases.updateCategory.execute(id, name);
 

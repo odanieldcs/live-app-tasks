@@ -13,6 +13,9 @@ export default class Routes {
 			this.controllerFactory.controllers();
 
 		router.get('/', (req, res) => res.sendStatus(200));
+
+		router.get('/task', taskController.getAll.bind(taskController));
+		router.get('/task/:id', taskController.getOne.bind(taskController));
 		router.post(
 			'/task',
 			validateBody(createTaskSchema),
@@ -32,7 +35,10 @@ export default class Routes {
 			'/category',
 			categoryController.create.bind(categoryController)
 		);
-		router.put('/category', categoryController.update.bind(categoryController));
+		router.put(
+			'/category/:id',
+			categoryController.update.bind(categoryController)
+		);
 
 		return router;
 	}

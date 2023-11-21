@@ -14,6 +14,8 @@ export class ControllerFactory {
 		const useCases = this.useCasesFactory.useCases().task;
 
 		return new TaskController({
+			getOne: useCases.getOne,
+			getAll: useCases.getAll,
 			createTask: useCases.createTask,
 			completeTask: useCases.completeTask,
 			assignCategoryTask: useCases.assignCategoryTask,

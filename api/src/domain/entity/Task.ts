@@ -9,13 +9,17 @@ export default class Task {
 		readonly id: string,
 		readonly title: string,
 		readonly createdAt: Date,
-		updatedAt?: Date
+		readonly todoDate?: Date,
+		updatedAt?: Date,
+		categoryId?: string,
+		done?: boolean
 	) {}
 
-	static create(title: string) {
+	static create(title: string, todoDate?: Date) {
 		const taskId = IDGenerator.generate();
+		const todo = todoDate ?? new Date();
 
-		return new Task(taskId, title, new Date());
+		return new Task(taskId, title, new Date(), todo);
 	}
 
 	complete() {
