@@ -1,9 +1,9 @@
 export type TaskType = {
-	id: string;
+	id?: string;
 	title: string;
-	category: string;
-	isDone: boolean;
-	dateToDo: Date;
+	category?: string;
+	isDone?: boolean;
+	todoDate?: Date;
 };
 
 export type MyAppProviderType = {
@@ -12,6 +12,7 @@ export type MyAppProviderType = {
 	updateTask: (id: string, updatedTask: TaskType) => void;
 	updateActiveCategory: (category: string) => void;
 	updateActiveFilter: (filter: string) => void;
+	getTasks: () => void;
 };
 
 export type StateType = {
@@ -26,4 +27,5 @@ export type TaskAppContextType = {
 	updateTask: (id: string, updatedTask: TaskType) => void;
 	updateActiveCategory: (category: string) => void;
 	updateActiveFilter: (filter: string) => void;
+	getTasks: () => void;
 };

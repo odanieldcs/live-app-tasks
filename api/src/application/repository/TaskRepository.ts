@@ -27,6 +27,7 @@ export class TaskRepository {
 			title: task.title,
 			createdAt: task.created_at,
 			updatedAt: task.updated_at,
+			todoDate: task.todo_date ?? null,
 			categoryId: task.category_id ?? null,
 			done: task.done,
 		}));
@@ -39,6 +40,7 @@ export class TaskRepository {
 			id: task.id,
 			title: task.title,
 			created_at: task.createdAt,
+			todo_date: task.todoDate,
 		});
 	}
 

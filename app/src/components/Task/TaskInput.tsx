@@ -14,8 +14,7 @@ export function TaskInput() {
 			addTask({
 				id: newId,
 				title: task,
-				category: 'category',
-				dateToDo: new Date(),
+				todoDate: new Date(),
 				isDone: false,
 			});
 

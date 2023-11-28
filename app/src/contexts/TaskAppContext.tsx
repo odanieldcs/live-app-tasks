@@ -12,10 +12,32 @@ export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const [state, setState] = useState(initialState);
 
-	const addTask = (task: TaskType) => {
+	const addTask = async (task: TaskType) => {
 		setState((prevState) => ({
 			...prevState,
 			tasks: [...prevState.tasks, task],
+		}));
+
+		delete task.id;
+		delete task.isDone;
+
+		await fetch('/api/task', {
+			method: 'POST',
+			body: JSON.stringify(task),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+	};
+
+	const getTasks = async () => {
+		const res = await fetch('/api/task');
+
+		const { tasks } = await res.json();
+
+		setState((prevState) => ({
+			...prevState,
+			tasks,
 		}));
 	};
 
@@ -42,6 +64,7 @@ export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 		updateTask,
 		updateActiveCategory,
 		updateActiveFilter,
+		getTasks,
 	};
 
 	return (
