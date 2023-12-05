@@ -19,6 +19,7 @@ export default async function handler(
 }
 
 async function addTask(task: any) {
+	console.log(task);
 	await fetch(`${URL_API}/task`, {
 		method: 'POST',
 		body: JSON.stringify(task),

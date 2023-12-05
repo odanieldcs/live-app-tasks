@@ -1,22 +1,30 @@
 import { useState, useId } from 'react';
 import { useMyAppContext } from '@/contexts/TaskAppContext';
 import Styles from './TaskInput.module.css';
+import { useMutation } from 'react-query';
+import { TaskType } from '@/contexts/TaskAppContextTypes';
 
 export function TaskInput() {
-	const { addTask } = useMyAppContext();
+	// const { addTask } = useMyAppContext();
 	const [task, setTask] = useState('');
 
 	const newId = useId();
 
+	const mutation = useMutation(
+		async (newTask: TaskType) =>
+			await fetch('/api/task', {
+				method: 'POST',
+				body: JSON.stringify(newTask),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+	);
+
 	// call fn context to add task to list when user press enter
 	const handleAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
-			addTask({
-				id: newId,
-				title: task,
-				todoDate: new Date(),
-				isDone: false,
-			});
+			mutation.mutate({ title: task });
 
 			setTask('');
 		}

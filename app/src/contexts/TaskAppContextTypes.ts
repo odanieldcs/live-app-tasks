@@ -12,7 +12,7 @@ export type MyAppProviderType = {
 	updateTask: (id: string, updatedTask: TaskType) => void;
 	updateActiveCategory: (category: string) => void;
 	updateActiveFilter: (filter: string) => void;
-	getTasks: () => void;
+	// getTasks: () => void;
 };
 
 export type StateType = {
@@ -27,5 +27,5 @@ export type TaskAppContextType = {
 	updateTask: (id: string, updatedTask: TaskType) => void;
 	updateActiveCategory: (category: string) => void;
 	updateActiveFilter: (filter: string) => void;
-	getTasks: () => void;
+	// getTasks: () => void;
 };

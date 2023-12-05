@@ -30,16 +30,16 @@ export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const getTasks = async () => {
-		const res = await fetch('/api/task');
+	// const getTasks = async () => {
+	// 	const res = await fetch('/api/task');
 
-		const { tasks } = await res.json();
+	// 	const { tasks } = await res.json();
 
-		setState((prevState) => ({
-			...prevState,
-			tasks,
-		}));
-	};
+	// 	setState((prevState) => ({
+	// 		...prevState,
+	// 		tasks,
+	// 	}));
+	// };
 
 	const updateTask = (id: string, updatedTask: TaskType) => {
 		setState((prevState) => ({
@@ -64,7 +64,7 @@ export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 		updateTask,
 		updateActiveCategory,
 		updateActiveFilter,
-		getTasks,
+		// getTasks,
 	};
 
 	return (
