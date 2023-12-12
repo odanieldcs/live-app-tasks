@@ -3,10 +3,12 @@ import { useMyAppContext } from '@/contexts/TaskAppContext';
 import Styles from './TaskInput.module.css';
 import { useMutation } from 'react-query';
 import { TaskType } from '@/contexts/TaskAppContextTypes';
+import { Icon } from '../Icon';
 
 export function TaskInput() {
 	// const { addTask } = useMyAppContext();
 	const [task, setTask] = useState('');
+	const [isInputActive, setIsInputActive] = useState(false);
 
 	const newId = useId();
 
@@ -32,14 +34,26 @@ export function TaskInput() {
 
 	return (
 		<>
-			<input
-				type="text"
-				className={Styles.input}
-				value={task}
-				onChange={(e) => setTask(e.target.value)}
-				onKeyDown={handleAddTask}
-				placeholder="+ Adicione uma tarefa a lista. Pressione Enter para salvar."
-			/>
+			<div
+				className={`${Styles.container} ${
+					isInputActive ? Styles.containerActive : ''
+				}`}
+			>
+				<input
+					type="text"
+					className={Styles.input}
+					value={task}
+					onChange={(e) => setTask(e.target.value)}
+					onFocus={() => setIsInputActive(true)}
+					onBlur={() => setIsInputActive(false)}
+					onKeyDown={handleAddTask}
+					placeholder="+ Adicione uma tarefa a lista. Pressione Enter para salvar."
+				/>
+				<button className={Styles.calendarButton}>
+					<Icon icon="Calendar" width={18} height={18} />
+					<span className="flex">Hoje</span>
+				</button>
+			</div>
 		</>
 	);
 }

@@ -1,0 +1,7 @@
+.brand {
+	@apply flex items-center mb-7 gap-x-[15px];
+}
+
+.brand span {
+	@apply text-2xl font-bold text-[#23243D];
+}

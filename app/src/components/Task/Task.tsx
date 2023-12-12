@@ -10,14 +10,16 @@ type TaskProps = {
 
 export function Task({ children, category, todoDate, isDone }: TaskProps) {
 	return (
-		<div className={Styles.task}>
+		<div className={`${Styles.task} ${isDone ? Styles.taskDone : ''}`}>
 			<div className="flex gap-x-[15px]">
 				<FormCheckbox isDone={isDone ? isDone : false} />
 				<p>{children}</p>
 			</div>
 			<div className={Styles.props}>
-				<div>{category}</div>
-				<div>{todoDate ? todoDate.toString() : ''}</div>
+				<p>{category}</p>
+				<time dateTime={todoDate?.toString()}>
+					{todoDate ? todoDate.toString() : ''}
+				</time>
 			</div>
 		</div>
 	);

@@ -3,6 +3,7 @@ import Icons from './Base64Icons.json';
 
 const IconSource = {
 	Archive: Icons.Archive,
+	Calendar: Icons.Calendar,
 	Done: Icons.Done,
 	List: Icons.List,
 	Menu: Icons.Menu,
@@ -13,8 +14,22 @@ const IconSource = {
 
 export type IconName = keyof typeof IconSource;
 
-export function Icon({ icon }: { icon: IconName }) {
-	const iconBase64 = `data:image/svg+xml;base64,${IconSource[icon]}`;
+type IconProps = {
+	icon: IconName;
+	width?: number;
+	height?: number;
+	alt?: string;
+};
 
-	return <Image src={iconBase64} width={24} height={24} alt="" />;
+export function Icon(props: IconProps) {
+	const iconBase64 = `data:image/svg+xml;base64,${IconSource[props.icon]}`;
+
+	return (
+		<Image
+			src={iconBase64}
+			width={props.width ?? 24}
+			height={props.height ?? 24}
+			alt={props.alt ?? ''}
+		/>
+	);
 }

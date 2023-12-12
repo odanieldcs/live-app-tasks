@@ -1,12 +1,16 @@
 .task {
 	@apply flex justify-between w-full border-b p-[15px] items-center;
-	@apply hover:bg-[#F5F6F8] bg-white border-[#D5D9E1];
+	@apply hover:bg-[#F2F3F5] bg-white border-[#D5D9E1];
 }
 
 .task p {
 	@apply text-[#23243D] text-[16px];
-
 }
+
+.taskDone p, .taskDone time {
+	@apply line-through text-[#94A1B7];
+}
+
 
 .props {
 	@apply flex items-center gap-x-[15px] text-[#94A1B7] text-[12px] font-semibold;

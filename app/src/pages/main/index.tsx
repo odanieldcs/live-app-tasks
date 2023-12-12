@@ -7,19 +7,17 @@ import { Task } from '@/components/Task/Task';
 import { Title } from '@/components/Title/Title';
 import { User } from '@/components/User/User';
 import { TaskList } from '@/components/Task/TaskList';
+import Brand from '@/components/Brand/Brand';
 
 export default function Main() {
 	return (
 		<main className="p-7">
 			<div className="container mx-auto bg-white flex rounded-[20px] shadow-md overflow-hidden">
 				<Sidebar>
-					<div className="flex items-center mb-7">
-						<span className="w-9 h-9 bg-slate-800 rounded-md mr-4"></span>{' '}
-						MyTask
-					</div>
+					<Brand />
 
 					<div className="grid ">
-						<div className="grid gap-10">
+						<div className="grid gap-10 mb-10">
 							<MainMenu />
 							<SecondaryMenu />
 						</div>
