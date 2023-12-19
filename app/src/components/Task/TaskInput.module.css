@@ -1,5 +1,5 @@
 .container {
-	@apply flex justify-between border-2 border-[#D3DBE9] bg-[#F2F3F5] rounded-[10px] overflow-hidden;
+	@apply flex justify-between border-2 border-[#D3DBE9] bg-[#F2F3F5] rounded-[10px];
 }
 
 .containerActive {
@@ -9,9 +9,4 @@
 .input {
 	@apply flex flex-grow border-2 px-[15px] py-[18px] text-base leading-5 text-[#23243D] bg-[#F2F3F5];
 	@apply placeholder-[#94A1B7] border-none focus:border-none focus:outline-none rounded-[10px];
-}
-
-.calendarButton {
-	@apply flex gap-x-[5px] p-[10px] bg-transparent hover:bg-[#DDE4F1] rounded-[8px] items-center m-[10px];
-	@apply text-[14px]
 }

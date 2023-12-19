@@ -10,6 +10,8 @@ const IconSource = {
 	NextWeek: Icons.NextWeek,
 	Today: Icons.Today,
 	Tomorrow: Icons.Tomorrow,
+	Next: Icons.Next,
+	Prev: Icons.Prev,
 };
 
 export type IconName = keyof typeof IconSource;

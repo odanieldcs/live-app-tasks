@@ -4,6 +4,7 @@ import Styles from './TaskInput.module.css';
 import { useMutation } from 'react-query';
 import { TaskType } from '@/contexts/TaskAppContextTypes';
 import { Icon } from '../Icon';
+import { CalendarButton } from '../CalendarButton/CalendarButton';
 
 export function TaskInput() {
 	// const { addTask } = useMyAppContext();
@@ -49,10 +50,7 @@ export function TaskInput() {
 					onKeyDown={handleAddTask}
 					placeholder="+ Adicione uma tarefa a lista. Pressione Enter para salvar."
 				/>
-				<button className={Styles.calendarButton}>
-					<Icon icon="Calendar" width={18} height={18} />
-					<span className="flex">Hoje</span>
-				</button>
+				<CalendarButton />
 			</div>
 		</>
 	);
