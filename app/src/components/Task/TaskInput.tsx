@@ -10,8 +10,7 @@ export function TaskInput() {
 	// const { addTask } = useMyAppContext();
 	const [task, setTask] = useState('');
 	const [isInputActive, setIsInputActive] = useState(false);
-
-	const newId = useId();
+	const { state } = useMyAppContext();
 
 	const mutation = useMutation(
 		async (newTask: TaskType) =>
@@ -27,7 +26,7 @@ export function TaskInput() {
 	// call fn context to add task to list when user press enter
 	const handleAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
-			mutation.mutate({ title: task });
+			mutation.mutate({ title: task, todoDate: state.newTaskSelectedDate });
 
 			setTask('');
 		}

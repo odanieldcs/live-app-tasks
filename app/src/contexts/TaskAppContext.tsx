@@ -8,6 +8,7 @@ export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 		tasks: [],
 		activeFilter: '',
 		activeCategory: '',
+		newTaskSelectedDate: new Date(),
 	};
 
 	const [state, setState] = useState(initialState);
@@ -58,12 +59,17 @@ export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 		setState({ ...state, activeFilter: filterActive });
 	};
 
+	const updateNewTaskSelectedDate = (newDate: Date) => {
+		setState({ ...state, newTaskSelectedDate: newDate });
+	};
+
 	const appContext = {
 		state,
 		addTask,
 		updateTask,
 		updateActiveCategory,
 		updateActiveFilter,
+		updateNewTaskSelectedDate,
 		// getTasks,
 	};
 

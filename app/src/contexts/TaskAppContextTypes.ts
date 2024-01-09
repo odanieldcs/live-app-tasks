@@ -19,6 +19,7 @@ export type StateType = {
 	tasks: TaskType[];
 	activeCategory: string;
 	activeFilter: string;
+	newTaskSelectedDate: Date;
 };
 
 export type TaskAppContextType = {
@@ -27,5 +28,6 @@ export type TaskAppContextType = {
 	updateTask: (id: string, updatedTask: TaskType) => void;
 	updateActiveCategory: (category: string) => void;
 	updateActiveFilter: (filter: string) => void;
+	updateNewTaskSelectedDate: (date: Date) => void;
 	// getTasks: () => void;
 };
