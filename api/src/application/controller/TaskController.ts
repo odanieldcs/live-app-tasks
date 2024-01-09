@@ -30,11 +30,17 @@ export class TaskController {
 	}
 
 	async getAll(req: Request, res: Response) {
-		const tasks = await this.useCases.getAll.execute();
+		const { limit, offset } = req.pagination;
+		const { startDate, endDate } = req.filters;
 
-		res.status(200).json({
-			tasks,
-		});
+		const tasks = await this.useCases.getAll.execute(
+			limit,
+			offset,
+			startDate,
+			endDate
+		);
+
+		res.status(200).json(tasks);
 	}
 
 	async create(req: Request, res: Response) {

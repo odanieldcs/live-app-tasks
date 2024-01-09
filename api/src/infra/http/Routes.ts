@@ -1,6 +1,6 @@
 import express from 'express';
 import { ControllerFactory } from '../../application/factory';
-import { validateBody } from './ValidationMiddleware';
+import { validateBody, getPagination, getFilters } from './middleware';
 import { createTaskSchema } from './schemas/TaskSchema';
 
 export default class Routes {
@@ -14,7 +14,12 @@ export default class Routes {
 
 		router.get('/', (req, res) => res.sendStatus(200));
 
-		router.get('/task', taskController.getAll.bind(taskController));
+		router.get(
+			'/task',
+			getPagination,
+			getFilters,
+			taskController.getAll.bind(taskController)
+		);
 		router.get('/task/:id', taskController.getOne.bind(taskController));
 		router.post(
 			'/task',

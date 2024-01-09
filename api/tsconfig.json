@@ -1,34 +1,36 @@
 {
-  "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */
+	"compilerOptions": {
+		/* Visit https://aka.ms/tsconfig to read more about this file */
 
-    /* Projects */
+		/* Projects */
 
-    /* Language and Environment */
-    "target": "es2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+		/* Language and Environment */
+		"target": "es2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
 
-    /* Modules */
-    "module": "commonjs" /* Specify what module code is generated. */,
-    "rootDirs": [
-      "./"
-    ] /* Allow multiple folders to be treated as one when resolving modules. */,
+		/* Modules */
+		"module": "commonjs" /* Specify what module code is generated. */,
+		"rootDirs": [
+			"./"
+		] /* Allow multiple folders to be treated as one when resolving modules. */,
 
-    /* JavaScript Support */
+		/* JavaScript Support */
 
-    /* Emit */
-    "sourceMap": true /* Create source map files for emitted JavaScript files. */,
-    "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+		/* Emit */
+		"sourceMap": true /* Create source map files for emitted JavaScript files. */,
+		"outDir": "./dist" /* Specify an output folder for all emitted files. */,
 
-    /* Interop Constraints */
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+		/* Interop Constraints */
+		"esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+		"forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 
-    /* Type Checking */
-    "strict": true /* Enable all strict type-checking options. */,
+		/* Type Checking */
+		"strict": true /* Enable all strict type-checking options. */,
 
-    /* Completeness */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
-  },
-  "include": ["src", "test"],
-  "exclude": ["node_modules", "migrations", "dist", "coverage"]
+		/* Completeness */
+		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
+
+		"typeRoots": ["./types"]
+	},
+	"include": ["src", "test", "types"],
+	"exclude": ["node_modules", "migrations", "dist", "coverage"]
 }
