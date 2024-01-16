@@ -6,7 +6,7 @@ const MyAppContext = createContext({} as TaskAppContextType);
 export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 	const initialState: StateType = {
 		tasks: [],
-		activeFilter: '',
+		activeFilter: 'today',
 		activeCategory: '',
 		newTaskSelectedDate: new Date(),
 	};
@@ -19,8 +19,7 @@ export const MyAppProvider = ({ children }: { children: React.ReactNode }) => {
 			tasks: [...prevState.tasks, task],
 		}));
 
-		delete task.id;
-		delete task.isDone;
+		delete task.done;
 
 		await fetch('/api/task', {
 			method: 'POST',

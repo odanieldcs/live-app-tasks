@@ -8,6 +8,7 @@ export class ListTask {
 	async execute(
 		limit: Number,
 		offset: Number,
+		done: Boolean,
 		startDate?: Date | null,
 		endDate?: Date | null
 	): Promise<ListTaskResponse> {
@@ -15,6 +16,7 @@ export class ListTask {
 		const tasks = await this.taskRepository.getAll(
 			limit,
 			offset,
+			done,
 			startDate,
 			endDate
 		);

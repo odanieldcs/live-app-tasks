@@ -32,10 +32,12 @@ export class TaskController {
 	async getAll(req: Request, res: Response) {
 		const { limit, offset } = req.pagination;
 		const { startDate, endDate } = req.filters;
+		const done = req.query.done === 'true' || false;
 
 		const tasks = await this.useCases.getAll.execute(
 			limit,
 			offset,
+			done,
 			startDate,
 			endDate
 		);
@@ -54,7 +56,8 @@ export class TaskController {
 
 	async complete(req: Request, res: Response) {
 		const { id: taskId } = req.params;
-		const task = await this.useCases.completeTask.execute(taskId);
+		const done = req.body.done.toString().toLowerCase() === 'true' || false;
+		const task = await this.useCases.completeTask.execute(taskId, done);
 
 		res.status(201).json({ task: task });
 	}

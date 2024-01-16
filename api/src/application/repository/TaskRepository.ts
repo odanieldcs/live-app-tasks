@@ -23,14 +23,15 @@ export class TaskRepository {
 	async getAll(
 		limit: Number,
 		offset: Number,
+		done: Boolean,
 		startDate?: Date | null,
 		endDate?: Date | null
 	): Promise<ListTaskResponse> {
 		// count the total of tasks with the filters
 		const { count, taskRows } =
 			startDate && endDate
-				? await this.getAllWithFilters(limit, offset, startDate, endDate)
-				: await this.getAllWithoutFilters(limit, offset);
+				? await this.getAllWithFilters(limit, offset, done, startDate, endDate)
+				: await this.getAllWithoutFilters(limit, offset, done);
 
 		const tasks: Task[] = taskRows.map((task: any) => ({
 			id: task.id,
@@ -51,10 +52,12 @@ export class TaskRepository {
 	private async getAllWithFilters(
 		limit: Number,
 		offset: Number,
+		done: Boolean,
 		startDate: Date,
 		endDate: Date
 	) {
 		const [{ count }] = await this.dbConnection('task')
+			.where({ done })
 			.whereBetween('created_at', [startDate, endDate])
 			.count();
 
@@ -62,6 +65,7 @@ export class TaskRepository {
 			.select('*')
 			.limit(limit)
 			.offset(offset)
+			.where({ done })
 			.whereBetween('created_at', [startDate, endDate])
 			.orderBy('created_at', 'desc');
 
@@ -71,13 +75,18 @@ export class TaskRepository {
 		};
 	}
 
-	private async getAllWithoutFilters(limit: Number, offset: Number) {
-		const [{ count }] = await this.dbConnection('task').count();
+	private async getAllWithoutFilters(
+		limit: Number,
+		offset: Number,
+		done: Boolean
+	) {
+		const [{ count }] = await this.dbConnection('task').where({ done }).count();
 
 		const taskRows = await this.dbConnection('task')
 			.select('*')
 			.limit(limit)
 			.offset(offset)
+			.where({ done })
 			.orderBy('created_at', 'desc');
 
 		return {

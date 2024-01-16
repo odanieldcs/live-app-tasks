@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Calendar } from '../Calendar/Calendar';
 import { Icon } from '../Icon';
 import Styles from './CalendarButton.module.css';
@@ -8,6 +8,12 @@ import { useMyAppContext } from '@/contexts/TaskAppContext';
 export function CalendarButton() {
 	const { state } = useMyAppContext();
 	const [calendarIsOpen, setCalendarIsOpen] = useState(false);
+
+	useEffect(() => {
+		if (state.newTaskSelectedDate) {
+			setCalendarIsOpen(false);
+		}
+	}, [state.newTaskSelectedDate]);
 
 	return (
 		<div className={Styles.container}>

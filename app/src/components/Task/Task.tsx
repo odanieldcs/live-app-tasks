@@ -6,15 +6,21 @@ type TaskProps = {
 	children: React.ReactNode;
 	category?: string;
 	todoDate?: Date;
-	isDone?: boolean;
+	done?: boolean;
+	taskId: string;
 };
 
-export function Task({ children, category, todoDate, isDone }: TaskProps) {
-	console.log(todoDate);
+export function Task({
+	children,
+	category,
+	todoDate,
+	done,
+	taskId,
+}: TaskProps) {
 	return (
-		<div className={`${Styles.task} ${isDone ? Styles.taskDone : ''}`}>
+		<div className={`${Styles.task} ${done ? Styles.taskDone : ''}`}>
 			<div className="flex gap-x-[15px]">
-				<FormCheckbox isDone={isDone ? isDone : false} />
+				<FormCheckbox done={done ? done : false} taskId={taskId} />
 				<p>{children}</p>
 			</div>
 			<div className={Styles.props}>

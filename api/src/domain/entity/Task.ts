@@ -22,8 +22,8 @@ export default class Task {
 		return new Task(taskId, title, new Date(), todo);
 	}
 
-	complete() {
-		this.done = true;
+	complete(done: boolean) {
+		this.done = done;
 		this.updatedAt = new Date();
 	}
 

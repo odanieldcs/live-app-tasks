@@ -1,8 +1,8 @@
 export type TaskType = {
-	id?: string;
+	id: string;
 	title: string;
 	category?: string;
-	isDone?: boolean;
+	done?: boolean;
 	todoDate?: Date;
 };
 
