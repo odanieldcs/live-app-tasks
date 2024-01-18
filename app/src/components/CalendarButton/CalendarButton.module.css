@@ -3,11 +3,10 @@
 }
 
 .calendarButton {
-	@apply flex gap-x-[5px] p-[10px] bg-transparent hover:bg-[#DDE4F1] rounded-[8px] items-center m-[10px];
-	@apply text-[14px]
+	@apply flex gap-x-[5px] p-[10px] bg-transparent hover:bg-[#DDE4F1] rounded-[8px] items-center;
+	@apply text-[14px];
 }
 
 .calendar {
 	@apply absolute z-20 right-0;
 }
-

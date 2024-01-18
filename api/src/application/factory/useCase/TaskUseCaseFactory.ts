@@ -1,7 +1,7 @@
 import {
 	AssignCategoryTask,
 	CreateTask,
-	CompleteTask,
+	UpdateTask,
 	GetTask,
 	ListTask,
 } from '../../useCase/Task';
@@ -14,7 +14,7 @@ export class TaskUseCaseFactory {
 			getOne: new GetTask(this.taskRepository),
 			getAll: new ListTask(this.taskRepository),
 			createTask: new CreateTask(this.taskRepository),
-			completeTask: new CompleteTask(this.taskRepository),
+			updateTask: new UpdateTask(this.taskRepository),
 			assignCategoryTask: new AssignCategoryTask(this.taskRepository),
 		};
 	}

@@ -7,7 +7,7 @@ export default async function handler(
 	if (req.method === 'PUT') {
 		const taskId = req.query.id;
 
-		await fetch(`http://localhost:3001/task/${taskId}/complete`, {
+		await fetch(`http://localhost:3001/task/${taskId}`, {
 			method: 'PUT',
 			body: JSON.stringify(req.body),
 			headers: {

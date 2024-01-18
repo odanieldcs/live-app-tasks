@@ -14,7 +14,7 @@ export default function Main() {
 				<Sidebar>
 					<Brand />
 
-					<div className="grid ">
+					<div className="flex flex-col min-h-[90%] justify-between">
 						<div className="grid gap-10 mb-10">
 							<MainMenu />
 						</div>
@@ -22,7 +22,7 @@ export default function Main() {
 					</div>
 				</Sidebar>
 
-				<div className="p-7 flex flex-col w-full gap-y-[30px]">
+				<div className="p-7 flex flex-col w-full gap-y-[30px] h-[720px]">
 					<div className="flex gap-x-[10px]">
 						<Icon icon="List" />
 						<Title heading="Title">Hoje</Title>

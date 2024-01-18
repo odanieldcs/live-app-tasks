@@ -17,7 +17,7 @@ export class ControllerFactory {
 			getOne: useCases.getOne,
 			getAll: useCases.getAll,
 			createTask: useCases.createTask,
-			completeTask: useCases.completeTask,
+			updateTask: useCases.updateTask,
 			assignCategoryTask: useCases.assignCategoryTask,
 		});
 	}

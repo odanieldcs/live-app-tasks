@@ -8,10 +8,12 @@ export class TaskRepository {
 		const taskData = await this.dbConnection('task')
 			.where({ id: taskId })
 			.first();
+
 		const task = new Task(
 			taskData.id,
-			taskData.title,
 			taskData.created_at,
+			taskData.title,
+			taskData.todo_date,
 			taskData.updated_at,
 			taskData.category_id ?? null,
 			taskData.done
@@ -114,8 +116,8 @@ export class TaskRepository {
 	async update(task: Task): Promise<void> {
 		await this.dbConnection('task').where({ id: task.id }).update({
 			title: task.title,
-			categoryId: task.categoryId,
 			done: task.done,
+			todo_date: task.todoDate,
 			updated_at: task.updatedAt,
 		});
 	}

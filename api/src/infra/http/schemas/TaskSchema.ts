@@ -5,4 +5,10 @@ const createTaskSchema = joi.object({
 	todoDate: joi.date().optional(),
 });
 
-export { createTaskSchema };
+const updateTaskSchema = joi.object({
+	title: joi.string().optional(),
+	todoDate: joi.date().optional(),
+	done: joi.boolean().required(),
+});
+
+export { createTaskSchema, updateTaskSchema };

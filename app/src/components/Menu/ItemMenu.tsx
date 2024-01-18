@@ -35,7 +35,9 @@ export function ItemMenu({
 
 	return (
 		<button
-			className={`${Styles.itemMenu} ${active ? Styles.active : ''}`}
+			className={`${Styles.itemMenu} ${
+				active ? Styles.active : ''
+			} flex justify-between items-center`}
 			onClick={handleClick}
 		>
 			<div className="flex">

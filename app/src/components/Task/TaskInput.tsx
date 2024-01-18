@@ -11,7 +11,7 @@ export function TaskInput() {
 	// const { addTask } = useMyAppContext();
 	const [task, setTask] = useState('');
 	const [isInputActive, setIsInputActive] = useState(false);
-	const { state } = useMyAppContext();
+	const [todoDate, setTodoDate] = useState(new Date());
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation(
@@ -29,7 +29,7 @@ export function TaskInput() {
 	const handleAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
 			mutation.mutate(
-				{ title: task, todoDate: state.newTaskSelectedDate },
+				{ title: task, todoDate },
 				{
 					onSuccess: () => {
 						setTask('');
@@ -40,12 +40,17 @@ export function TaskInput() {
 		}
 	};
 
+	const handleSelectDate = (date: Date) => {
+		console.log('handleSelectDate', date);
+		setTodoDate(date);
+	};
+
 	return (
 		<>
 			<div
 				className={`${Styles.container} ${
 					isInputActive ? Styles.containerActive : ''
-				}`}
+				} items-center pr-[10px]`}
 			>
 				<input
 					type="text"
@@ -57,7 +62,12 @@ export function TaskInput() {
 					onKeyDown={handleAddTask}
 					placeholder="+ Adicione uma tarefa a lista. Pressione Enter para salvar."
 				/>
-				<CalendarButton />
+				<CalendarButton
+					enableIcon
+					todoDate={todoDate}
+					onSelectDate={handleSelectDate}
+					pattern="dd MMM yy"
+				/>
 			</div>
 		</>
 	);

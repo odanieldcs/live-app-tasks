@@ -1,33 +1,32 @@
 import { format } from 'date-fns';
 import { FormCheckbox } from '../Form/FormCheckbox';
 import Styles from './Task.module.css';
+import { TaskInputEditor } from './TaskInputEditor';
+import { TaskType } from '@/contexts/TaskAppContextTypes';
+import { CalendarButton } from '../CalendarButton/CalendarButton';
 
 type TaskProps = {
-	children: React.ReactNode;
-	category?: string;
-	todoDate?: Date;
-	done?: boolean;
-	taskId: string;
+	task: TaskType;
+	onComplete: (task: TaskType) => void;
+	onSelectDate: (task: TaskType) => void;
 };
 
-export function Task({
-	children,
-	category,
-	todoDate,
-	done,
-	taskId,
-}: TaskProps) {
+export function Task({ task, onComplete, onSelectDate }: TaskProps) {
+	const handleSelectDate = (date: Date) => {
+		onSelectDate({ ...task, todoDate: date });
+	};
 	return (
-		<div className={`${Styles.task} ${done ? Styles.taskDone : ''}`}>
-			<div className="flex gap-x-[15px]">
-				<FormCheckbox done={done ? done : false} taskId={taskId} />
-				<p>{children}</p>
+		<div className={`${Styles.task} ${task.done ? Styles.taskDone : ''}`}>
+			<div className="flex gap-x-[15px] items-center">
+				<FormCheckbox done={task.done ? task.done : false} taskId={task.id} />
+				<TaskInputEditor task={task} onComplete={onComplete} />
 			</div>
 			<div className={Styles.props}>
-				<p>{category}</p>
-				<time dateTime={todoDate?.toString()}>
-					{todoDate ? format(new Date(todoDate), "d 'de' MMM'.'") : ''}
-				</time>
+				<CalendarButton
+					pattern="d 'de' MMM'.'"
+					todoDate={task.todoDate}
+					onSelectDate={handleSelectDate}
+				/>
 			</div>
 		</div>
 	);

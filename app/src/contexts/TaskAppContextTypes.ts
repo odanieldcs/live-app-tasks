@@ -3,7 +3,9 @@ export type TaskType = {
 	title: string;
 	category?: string;
 	done?: boolean;
-	todoDate?: Date;
+	todoDate: Date;
+	createdAt?: Date;
+	updatedAt?: Date;
 };
 
 export type MyAppProviderType = {

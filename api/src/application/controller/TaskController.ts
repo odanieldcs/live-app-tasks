@@ -2,13 +2,13 @@
 // chama o useCase
 // responde o request
 import { Request, Response } from 'express';
-import { CreateTask, CompleteTask, AssignCategoryTask } from '../useCase/Task';
+import { CreateTask, UpdateTask, AssignCategoryTask } from '../useCase/Task';
 import { GetTask } from '../useCase/Task/GetTask';
 import { ListTask } from '../useCase/Task/ListTask';
 
 type TaskUseCases = {
 	createTask: CreateTask;
-	completeTask: CompleteTask;
+	updateTask: UpdateTask;
 	assignCategoryTask: AssignCategoryTask;
 	getOne: GetTask;
 	getAll: ListTask;
@@ -54,10 +54,15 @@ export class TaskController {
 		});
 	}
 
-	async complete(req: Request, res: Response) {
+	async update(req: Request, res: Response) {
 		const { id: taskId } = req.params;
-		const done = req.body.done.toString().toLowerCase() === 'true' || false;
-		const task = await this.useCases.completeTask.execute(taskId, done);
+		const { title, todoDate, done } = req.body;
+		const task = await this.useCases.updateTask.execute(
+			taskId,
+			title,
+			todoDate,
+			done
+		);
 
 		res.status(201).json({ task: task });
 	}

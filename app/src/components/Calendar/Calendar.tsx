@@ -12,8 +12,13 @@ import {
 } from 'date-fns';
 import { useMyAppContext } from '@/contexts/TaskAppContext';
 
-export function Calendar() {
-	const { updateNewTaskSelectedDate } = useMyAppContext();
+type CalendarProps = {
+	todoDate: Date;
+	onSelectDate: (date: Date) => void;
+	closeCalendar: () => void;
+};
+
+export function Calendar(props: CalendarProps) {
 	let today = startOfToday();
 	let [selectedDay, setSelectedDay] = useState(today);
 	let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'));
@@ -36,7 +41,8 @@ export function Calendar() {
 	}
 
 	function setNewTaskSelectedDate(day: Date) {
-		updateNewTaskSelectedDate(day);
+		props.onSelectDate(day);
+		props.closeCalendar();
 		setSelectedDay(day);
 	}
 

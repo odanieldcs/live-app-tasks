@@ -1,7 +1,7 @@
 import express from 'express';
 import { ControllerFactory } from '../../application/factory';
 import { validateBody, getPagination, getFilters } from './middleware';
-import { createTaskSchema } from './schemas/TaskSchema';
+import { createTaskSchema, updateTaskSchema } from './schemas/TaskSchema';
 
 export default class Routes {
 	constructor(readonly controllerFactory: ControllerFactory) {}
@@ -27,8 +27,9 @@ export default class Routes {
 			taskController.create.bind(taskController)
 		);
 		router.put(
-			'/task/:id/complete',
-			taskController.complete.bind(taskController)
+			'/task/:id',
+			validateBody(updateTaskSchema),
+			taskController.update.bind(taskController)
 		);
 		router.put(
 			'/task/:id/assign',
