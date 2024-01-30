@@ -1,0 +1,11 @@
+name: Repo Testing
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  APITest:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World"
