@@ -8,4 +8,20 @@ jobs:
   APITest:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello World"
+      - run: echo "Starting API Tests"
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node 18.18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.18'
+
+      - name: Install Dependencies
+        working-directory: ./api
+        run: npm install
+
+      - name: Run Tests
+        working-directory: ./api
+        run: npm test
