@@ -1,24 +1,32 @@
-import Task from "../../../../src/domain/entity/Task";
+import { describe, expect, test } from '@jest/globals';
+import Task from '../../../../src/domain/entity/Task';
 
-describe("Task Unit Test", () => {
-  test("should create a new task", () => {
-    const task = Task.create("Test");
+describe('Task Unit Test', () => {
+	test('should create a new task', () => {
+		const task = Task.create('Test');
 
-    expect(task).toBeInstanceOf(Task);
-    expect(task.title).toBe("Test");
-    expect(task.id).toBeDefined();
-    expect(task.createdAt).toBeInstanceOf(Date);
-  });
+		expect(task).toBeInstanceOf(Task);
+		expect(task.title).toBe('Test');
+		expect(task.id).toBeDefined();
+		expect(task.createdAt).toBeInstanceOf(Date);
+	});
 
-  test("should create a new task and complete it", () => {
-    const task = Task.create("Test");
-    task.complete();
+	test('should create a new task and update it', () => {
+		const task = Task.create('Test');
+		const newTask = {
+			title: 'Test Novo',
+			todoDate: new Date(),
+			done: true,
+		};
 
-    expect(task).toBeInstanceOf(Task);
-    expect(task.title).toBe("Test");
-    expect(task.id).toBeDefined();
-    expect(task.createdAt).toBeInstanceOf(Date);
-    expect(task.updatedAt).toBeInstanceOf(Date);
-    expect(task.done).toBe(true);
-  });
+		task.update(newTask.title, newTask.todoDate, newTask.done);
+
+		expect(task).toBeInstanceOf(Task);
+		expect(task.title).toBe(newTask.title);
+		expect(task.todoDate).toBe(newTask.todoDate);
+		expect(task.done).toBe(newTask.done);
+		expect(task.id).toBeDefined();
+		expect(task.createdAt).toBeInstanceOf(Date);
+		expect(task.updatedAt).toBeInstanceOf(Date);
+	});
 });

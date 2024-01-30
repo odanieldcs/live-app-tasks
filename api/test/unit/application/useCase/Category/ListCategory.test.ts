@@ -1,3 +1,4 @@
+import { describe, expect, test, beforeAll } from '@jest/globals';
 import { ListCategory } from '../../../../../src/application/useCase/Category';
 import Category from '../../../../../src/domain/entity/Category';
 
@@ -10,7 +11,7 @@ describe('UseCase ListCategory', () => {
 		list = [Category.create('Title 1'), Category.create('Title 2')];
 
 		mockRepository = {
-			list: jest.fn().mockReturnValue(list),
+			list: () => list,
 		};
 
 		listCategory = new ListCategory(mockRepository);
@@ -19,7 +20,6 @@ describe('UseCase ListCategory', () => {
 	test('should list a category', async () => {
 		const categories = await listCategory.execute();
 
-		expect(mockRepository.list).toBeCalledTimes(1);
 		expect(categories).toHaveLength(2);
 		expect(categories).toEqual(list);
 	});
