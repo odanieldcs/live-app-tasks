@@ -1,4 +1,7 @@
-import { CategoryController, TaskController } from '../controller';
+import {
+	CategoryControllerImpl,
+	TaskControllerImpl,
+} from '@infra/http/controller';
 
 export class ControllerFactory {
 	constructor(readonly useCasesFactory: any) {}
@@ -13,7 +16,7 @@ export class ControllerFactory {
 	private getControllerTask() {
 		const useCases = this.useCasesFactory.useCases().task;
 
-		return new TaskController({
+		return new TaskControllerImpl({
 			getOne: useCases.getOne,
 			getAll: useCases.getAll,
 			createTask: useCases.createTask,
@@ -25,7 +28,7 @@ export class ControllerFactory {
 	private getControllerCategory() {
 		const useCases = this.useCasesFactory.useCases().category;
 
-		return new CategoryController({
+		return new CategoryControllerImpl({
 			createCategory: useCases.createCategory,
 			listCategory: useCases.listCategory,
 			updateCategory: useCases.updateCategory,

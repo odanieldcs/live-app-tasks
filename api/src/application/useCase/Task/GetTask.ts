@@ -1,4 +1,4 @@
-import Task from '../../../domain/entity/Task';
+import Task from '@domain/entity/Task';
 import { TaskRepository } from '../../repository';
 
 export class GetTask {

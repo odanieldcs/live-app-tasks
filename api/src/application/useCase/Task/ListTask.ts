@@ -1,6 +1,6 @@
-import Task from '../../../domain/entity/Task';
+import Task from '@domain/entity/Task';
 import { TaskRepository } from '../../repository';
-import { ListTaskResponse } from '../../../domain/interface/TaskList';
+import { ListTaskResponse } from '@domain/interface/TaskList';
 
 export class ListTask {
 	constructor(private readonly taskRepository: TaskRepository) {}

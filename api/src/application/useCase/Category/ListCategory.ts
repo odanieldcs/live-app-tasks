@@ -1,5 +1,5 @@
 import { CategoryRepository } from '../../repository';
-import Category from '../../../domain/entity/Category';
+import Category from '@domain/entity/Category';
 
 export class ListCategory {
 	constructor(private readonly categoryRepository: CategoryRepository) {}

@@ -1,5 +1,5 @@
 import express from 'express';
-import { ControllerFactory } from '../../application/factory';
+import { ControllerFactory } from '@application/factory';
 import { validateBody, getPagination, getFilters } from './middleware';
 import { createTaskSchema, updateTaskSchema } from './schemas/TaskSchema';
 
